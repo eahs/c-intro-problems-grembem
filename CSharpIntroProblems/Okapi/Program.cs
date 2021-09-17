@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 /*
@@ -31,7 +32,7 @@ namespace Okapi
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter two numbers: ");
+            Console.Write("Enter three numbers: ");
             
             // This is Linq.  Linq can make your life pretty easy
             var nums = Console.ReadLine() // Read a string from the user
@@ -39,8 +40,32 @@ namespace Okapi
                 .Select(n => Convert.ToInt32(n)) // Select each string and convert it to an integer
                 .ToList(); // Now turn the integer collection into a List
             
-            Console.WriteLine($"You entered {nums[0]} and {nums[1]}");
+            Console.WriteLine($"You entered {nums[0]} and {nums[1]} and {nums[2]}");
             
+
+            int final = diceRoll(nums);
+            
+            Console.WriteLine("You won " + final);
+        }
+
+        private static int diceRoll(List<int> num)
+        {
+            int o = 0;
+            if (num[0] == num[1] && num[1] == num[2])
+            {
+                o = num[0] * 3;
+            } else if (num[0] == num[1])
+            {
+                o = num[0] * 2;
+            } else if (num[1] == num[2])
+            {
+                o = num[1] * 2;
+            } else if (num[0] == num[2])
+            {
+                o = num[0] * 2;
+            }
+
+            return o;
         }
     }
 }
